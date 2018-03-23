@@ -6,9 +6,19 @@ using System.Threading.Tasks;
 
 namespace SprinklerIoT
 {
+    public class Sprinkler
+    {
+        string name;
+        string location;
+        TimeSpan durration;
+        DateTime waterStart;
+
+        
+    }
+
     public enum WeekDay
     {
-        Sunday,
+        Sunday = 1,
         Monday,
         Tuesday,
         Wednesday,
@@ -16,12 +26,10 @@ namespace SprinklerIoT
         Friday,
         Saturday
     }
-
-    public enum Time
+    public class Restrictions
     {
-        StartTime,
-        EndTime
-    }
+        List<DateTime> allowedDays = new List<DateTime>();
 
+    }
     
 }
