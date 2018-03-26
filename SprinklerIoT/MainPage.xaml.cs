@@ -27,6 +27,10 @@ namespace SprinklerIoT
         // Our pin values
         private static readonly int[] RELAY_PIN = new int[] { 2, 3, 4, 5 };
 
+        // Initialization pin
+        private GpioPin pin;
+
+        // Physical Relay Pins
         private GpioPin pin1;
         private GpioPin pin2;
         private GpioPin pin3;
@@ -54,7 +58,7 @@ namespace SprinklerIoT
 
         private void InitGPIO()
         {
-            // Initialization
+            // Initialization Gpio Controller
             var gpio = GpioController.GetDefault();
 
             // Show an error if there is no GPIO controller
@@ -65,21 +69,17 @@ namespace SprinklerIoT
                 return;
             }
 
-            pin1 = gpio.OpenPin(RELAY_PIN[0]);
-            pin2 = gpio.OpenPin(RELAY_PIN[1]);
-            pin3 = gpio.OpenPin(RELAY_PIN[2]);
-            pin4 = gpio.OpenPin(RELAY_PIN[3]);
-            pinValue = GpioPinValue.High;
-            
-            pin1.Write(pinValue);
-            pin2.Write(pinValue);
-            pin3.Write(pinValue);
-            pin4.Write(pinValue);
 
-            pin1.SetDriveMode(GpioPinDriveMode.Output);
-            pin2.SetDriveMode(GpioPinDriveMode.Output);
-            pin3.SetDriveMode(GpioPinDriveMode.Output);
-            pin4.SetDriveMode(GpioPinDriveMode.Output);
+            pinValue = GpioPinValue.High;
+
+            // Initialize all the pins
+            for (int i = 0; i < RELAY_PIN.Length; i++)
+            {
+                pin = gpio.OpenPin(RELAY_PIN[i]);
+                pin.Write(pinValue);
+                pin.SetDriveMode(GpioPinDriveMode.Output);
+            }
+            
 
         }
         /// <summary>
@@ -102,7 +102,7 @@ namespace SprinklerIoT
             Button btn = s as Button;
             var pinValue = pin.Read();
 
-            // Toggle the relay and update the button
+            // Toggle the relay and update the button background colour
             if (pinValue == GpioPinValue.High)
             {
                 pinValue = GpioPinValue.Low;
@@ -160,9 +160,6 @@ namespace SprinklerIoT
             togglePin(pin4, sender);
         }
 
-        private void NavView_SelectionChanged(NavigationView sender, NavigationViewSelectionChangedEventArgs args)
-        {
-
-        }
+        
     }
 }
