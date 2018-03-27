@@ -19,29 +19,56 @@ namespace SprinklerIoT
         // int moistureLevel;   // Water soil moisture level
         // int lightIntensity;  // Light intensity sensor
 
-
+        // Get/Set the name of the sprinkler
         public string Name
         {
             get { return this.name; }
             set { this.name = value; }
         }
+
+        // Get/Set the location of the sprinkler
         public string Location
         {
             get { return this.location; }
             set { this.location = value; }
         }
+
+        // Get/Set the pin of the sprinkler
+        public GpioPin pinVal
+        {
+            get { return this.pin; }
+            set { this.pin = value; }
+        }
+
+        // Get/Set the Duration of the sprinkler on time
+        public TimeSpan Durration
+        {
+            get { return this.durration; }
+            set { this.durration = value; }
+        }
+
+        // Get/Set the start time of the sprinkler
+        public DateTime StartWater
+        {
+            get { return this.waterStart; }
+            set { this.waterStart = value; }
+        }
         
-        // pin get/set/initialization etc...
+        // Maybe make this method outside of the class
+        private void run()
+        {
+            while(DateTime.Now <)
+        }
 
         // Turn on the sprinkler
-        private void turnON(GpioPin pin)
+        private void turnON()
         {
             pin.Write(GpioPinValue.High);
             // Can do other stuff later ex: graphics, send to Azure, sQL database etc
         }
 
         // Turn off the sprinkler
-        private void turnOFF(GpioPin pin)
+        private void turnOFF()
         {
             pin.Write(GpioPinValue.Low);
         }
