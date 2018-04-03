@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Windows.Devices.Gpio;
+
 namespace SprinklerIoT
 {
     /// <summary>
@@ -54,17 +55,13 @@ namespace SprinklerIoT
             set { this.waterStart = value; }
         }
         
-        // Maybe make this method outside of the class
-        private void run()
-        {
-            while(DateTime.Now <)
-        }
+        
 
         // Turn on the sprinkler
         private void turnON()
         {
             pin.Write(GpioPinValue.High);
-            // Can do other stuff later ex: graphics, send to Azure, sQL database etc
+            // Can do other stuff later ex: graphics, send to Azure, SQL database etc
         }
 
         // Turn off the sprinkler
@@ -88,6 +85,31 @@ namespace SprinklerIoT
         Friday,
         Saturday
     }
+
+    public enum Month
+    {
+        January = 1,
+        February,
+        March,
+        April,
+        May,
+        June,
+        July,
+        August,
+        September,
+        October,
+        November,
+        December
+
+    }
+    public enum Location
+    {
+        North = 1,
+        South,
+        East,
+        West
+    }
+
     public class Restrictions
     {
         List<DateTime> allowedDays = new List<DateTime>();

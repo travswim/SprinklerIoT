@@ -39,7 +39,7 @@ namespace SprinklerIoT
         private SolidColorBrush grayBrush = new SolidColorBrush(Windows.UI.Colors.LightGray);
 
 
-
+        
 
 
         public MainPage()
@@ -50,7 +50,7 @@ namespace SprinklerIoT
             InitGPIO();
             getDate();
 
-
+            
         }
 
         private void InitGPIO()
@@ -122,6 +122,8 @@ namespace SprinklerIoT
                 btn.Content = "Relay OFF";
             }
         }
+
+
 
         /// <summary>
         /// Toggle button for relay 1
